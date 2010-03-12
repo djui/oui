@@ -28,6 +28,7 @@ BODYLESS_STATUSES = [204,205,304] // HTTP statuses without body
 
 // Enable debug mode (verbose async output to stdout)
 exports.debug = false
+exports.documentRoot = null
 
 var routes = {
 	GET: [],
@@ -682,6 +683,9 @@ function createServer() {
 
 	// Allow any origin by default
 	server.allowedOrigin = /./;
+
+	// Inherit documentRoot from module-wide property
+	server.documentRoot = exports.documentRoot
 
 	// List of request content types we will buffer
 	server.bufferableRequestTypes = [
